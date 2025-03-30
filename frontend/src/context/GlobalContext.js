@@ -11,9 +11,10 @@ export const GlobalContextProvider = ({ children }) => {
     const [userInput, setUserInput] = useState("");
     const [file, setFile] = useState(null);
     const [option, setOption] = useState(0);
-    const inputOptions = ["write your own", "upload a file"];    
+    const inputOptions = ["write your own", "upload a file"];
     const [rawNotes, setRawNotes] = useState(null);
     const [notes, setNotes] = useState(null);
+    const [usageReportResponse, setUsageReportResponse] = useState(null);
 
     return (
         <GlobalContext.Provider
@@ -24,6 +25,7 @@ export const GlobalContextProvider = ({ children }) => {
                 inputOptions,
                 rawNotes, setRawNotes,
                 notes, setNotes,
+                usageReportResponse, setUsageReportResponse,
             }}>
             {children}
         </GlobalContext.Provider>
