@@ -22,11 +22,12 @@ const InputBox = () => {
         setIsLoading(true);
         console.log("user input submitted:", userInput);
         // const response = await sendUsageReport();
+        /*
         if (response) {
             console.log("Lambda Function response: ", response)
             setUsageReportResponse(response)
         }
-
+        */
         setIsLoading(false);
     }
     return (
