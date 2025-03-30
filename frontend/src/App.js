@@ -1,10 +1,11 @@
 import './App.css';
-import InputBox from './components/InputBox';
+
+import InputSelector from './components/InputSelector';
 
 function App() {
   return (
     <div className="App">
-      <InputBox />
+      <InputSelector />
     </div>
   );
 }
