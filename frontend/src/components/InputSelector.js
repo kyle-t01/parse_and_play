@@ -59,7 +59,7 @@ const InputSelector = () => {
 
     return (
         <div className="input-selector">
-            <h1>How would you like to input notes?</h1>
+            <h1>Input Method</h1>
             {renderOptions()}
             {renderOptionComponent()}
         </div>
