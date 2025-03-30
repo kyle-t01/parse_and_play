@@ -32,7 +32,7 @@ const InputBox = () => {
     }
     return (
         <div className="input-box">
-            <h1>Input Text Here</h1>
+
             <textarea
                 className="input"
                 type="text"
