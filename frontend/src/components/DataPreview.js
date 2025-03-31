@@ -5,9 +5,11 @@ import { GlobalVars } from "../context/GlobalContext";
 
 
 const DataPreview = () => {
-    const { file } = GlobalVars();
+    const { file, setFile } = GlobalVars();
     const { musicEvents, setMusicEvents } = GlobalVars();
     const { invalidWords, setInvalidWords } = GlobalVars();
+    const { option, setOption } = GlobalVars();
+    const { submittedInput, setSubmittedInput } = GlobalVars();
     const [validIndexArray, setValidIndexArray] = useState([]);
     const [rawWords, setRawWords] = useState([]);
 
@@ -16,14 +18,15 @@ const DataPreview = () => {
         setValidIndexArray([]);
         setInvalidWords([]);
         setRawWords([]);
-        readFile()
-    }, [file]);
+        if (option == 1) readFile();
+        if (option == 0) readInputBox();
+    }, [file, submittedInput, option]);
 
 
     // read an entire text file into lines
     const readFile = () => {
 
-        if (!file) { console.log("no file detected!"); return; }
+        if (!file) { return; }
 
         const reader = new FileReader();
         reader.readAsText(file)
@@ -37,6 +40,18 @@ const DataPreview = () => {
         }
 
     }
+
+    const readInputBox = () => {
+        if (!submittedInput) return;
+        setFile(null);
+        const words = submittedInput.trim().split(/\s+/);
+        setRawWords(words);
+        // get matched events {notes: [], duration: (float)}
+        words.forEach((w) => matchWord(w));
+        return;
+    }
+
+
     const matchWord = (w) => {
         // default of 0.25 if duration omitted 
         var duration = 0.25;
