@@ -1,4 +1,5 @@
 import './App.css';
+import DataPreview from './components/DataPreview';
 
 import InputSelector from './components/InputSelector';
 import Instructions from './components/Instructions';
@@ -8,6 +9,7 @@ function App() {
     <div className="App">
       <Instructions />
       <InputSelector />
+      <DataPreview/>
     </div>
   );
 }
