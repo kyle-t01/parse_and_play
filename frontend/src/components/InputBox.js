@@ -10,6 +10,7 @@ const InputBox = () => {
 
     // global state
     const { userInput, setUserInput } = GlobalVars();
+    const { submittedInput, setSubmittedInput } = GlobalVars();
     const { setUsageReportResponse } = GlobalVars();
     // const { rawNotes, setRawNotes } = GlobalVars();
 
@@ -20,7 +21,7 @@ const InputBox = () => {
     const handleSubmitUserInput = async (e) => {
         e.preventDefault();
         setIsLoading(true);
-        console.log("user input submitted:", userInput);
+        setSubmittedInput(userInput);
         // const response = await sendUsageReport();
         /*
         if (response) {
@@ -28,6 +29,7 @@ const InputBox = () => {
             setUsageReportResponse(response)
         }
         */
+
         setIsLoading(false);
     }
     return (
