@@ -16,7 +16,7 @@ const InputBox = () => {
 
     // local state
     const [isLoading, setIsLoading] = useState(false);
-    const maxChars = 300;
+    const maxChars = 10000;
 
     const handleSubmitUserInput = async (e) => {
         e.preventDefault();
