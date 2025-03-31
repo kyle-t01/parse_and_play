@@ -9,6 +9,7 @@ const GlobalContext = createContext();
 export const GlobalContextProvider = ({ children }) => {
 
     const [userInput, setUserInput] = useState("");
+    const [submittedInput, setSubmittedInput] = useState(null);
     const [file, setFile] = useState(null);
     const [option, setOption] = useState(0);
     const inputOptions = ["write your own", "upload a file"];
@@ -21,6 +22,7 @@ export const GlobalContextProvider = ({ children }) => {
         <GlobalContext.Provider
             value={{
                 userInput, setUserInput,
+                submittedInput, setSubmittedInput,
                 file, setFile,
                 option, setOption,
                 inputOptions,
