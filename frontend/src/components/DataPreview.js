@@ -61,16 +61,35 @@ const DataPreview = () => {
         // chainedNotes: D-F#-.-Cb etc
         const chainedNoteRegex = `((?:${noteRegex}-)*${noteRegex})`
         // durations: :1/4, :0.25 etc
-        const durationRegex = "(?:[:]([0-9]\/[0-9]|(?:[0-9]*[.])?[0-9]+))?"
+        const durationRegex = "(?:[:]([0-9]+\/[1-9]+|(?:[0-9]*[.])?[0-9]+))?"
         const wordRegex = new RegExp(`^${chainedNoteRegex}${durationRegex}$`)
         const match = w.match(wordRegex);
+        console.log(match)
         if (match) {
             // extract notes, and duration
             // see if there is any chaining "-" in notes and parse => D-F#-A to ["D", "F#", "A"], remove all "."
             const splitNotes = match[1].split("-").filter(x => x !== ".");
+            // now append the octave (default 4) to each note if missing; look for F#5 C4 etc
+            const octaveNotes = splitNotes.map(n => {
+                if (/\d$/.test(n)) return n;
+                return n + "4";
+            });
             // parse duration
-            if (match[2]) { duration = parseFloat(match[2]); }
-            const musicEvent = { notes: splitNotes, duration: duration };
+            const number = match[2];
+            if (number) {
+                var val = 0;
+                if (number.includes('/')) {
+                    // fractions
+                    val = parseFloat(number.split("/").reduce((a, b) => a / b));
+                } else {
+                    // decimals
+                    val = parseFloat(number);
+                }
+                if (val == NaN || val == 0.0 || val == 0) { val = 0.25 };
+                duration = val;
+
+            }
+            const musicEvent = { notes: octaveNotes, duration: duration };
             setMusicEvents(prev => [...prev, musicEvent])
             setValidIndexArray(prev => [...prev, true]);
 
