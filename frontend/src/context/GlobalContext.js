@@ -13,7 +13,8 @@ export const GlobalContextProvider = ({ children }) => {
     const [option, setOption] = useState(0);
     const inputOptions = ["write your own", "upload a file"];
     const [rawNotes, setRawNotes] = useState(null);
-    const [notes, setNotes] = useState(null);
+    const [musicEvents, setMusicEvents] = useState([]);
+    const [invalidWords, setInvalidWords] = useState([]);
     const [usageReportResponse, setUsageReportResponse] = useState(null);
 
     return (
@@ -24,7 +25,8 @@ export const GlobalContextProvider = ({ children }) => {
                 option, setOption,
                 inputOptions,
                 rawNotes, setRawNotes,
-                notes, setNotes,
+                musicEvents, setMusicEvents,
+                invalidWords, setInvalidWords,
                 usageReportResponse, setUsageReportResponse,
             }}>
             {children}
