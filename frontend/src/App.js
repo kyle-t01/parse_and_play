@@ -8,6 +8,7 @@ import TonePlayer from './components/TonePlayer';
 function App() {
   return (
     <div className="App">
+      <h1>Parse and Play! Write down music notes as text and listen to it!</h1>
       <Instructions />
       <InputSelector />
       <DataPreview />
