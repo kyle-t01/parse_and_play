@@ -24,7 +24,7 @@ code {
 
 h2 {
   color: rgb(0, 0, 0);
-  
+
 }
 
 ul {
@@ -56,6 +56,21 @@ th {
   border: 2px solid #000000;
   color: #ffffff;
   background-color: #000000;
+  border-radius: 8px;
+  resize: both;
+  outline: none;
+  transition: border-color 0.3s ease-in-out;
+}
+
+.report-box .input {
+  width: 90%;
+  min-height: 60px;
+  margin-left: 1px;
+  margin-right: px;
+  font-size: 21px;
+  border: 2px solid #431d1d;
+  color: #000000;
+  background-color: #908f8f;
   border-radius: 8px;
   resize: both;
   outline: none;
