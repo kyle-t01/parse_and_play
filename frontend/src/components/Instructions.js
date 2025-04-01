@@ -52,15 +52,17 @@ const Instructions = () => {
                     <th>Notes</th>
                 </tr>
                 <tr>
-                    <td>4-3-5-6 Japanese Rock Progression</td>
+                    <td>4-5-3-6 Japanese Rock Progression</td>
                     <td>
                         C4-E4-G4:0.5 C3:0.5 D4-F#4-A4:0.5 D3:0.5 B3-D4-F#4:0.5 B2:0.5 E4-G4-B4:0.5 E3:0.5 A3-C4-E4:0.5 A2:0.5 B3-D4-F#4:0.25 B2:0.25 D#3-D#4-F#4-B4:0.5 E3:0.25 E4:0.25 G4:0.25 B4:0.25 D3:0.25 D4:0.25 F#4:0.25 A4:0.25
                     </td>
 
                 </tr>
                 <tr>
-                    <td>Example 2</td>
-                    <td>...</td>
+                    <td>Music with some invalid OR unsupported input</td>
+                    <td>
+                        Cb4maj7:1/2 .: . C5 C7 .:1/2 D-F#-A .-F#-.:1/4 :
+                    </td>
                 </tr>
             </table>
 
