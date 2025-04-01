@@ -22,13 +22,13 @@ export const sendUserReport = async (invalidChords, userReport) => {
         });
 
         const url = process.env.REACT_APP_LF_REPORT;
-        console.log(url);
         const response = await fetch(url, requestOptions);
         const data = await response.json();
         if (response.ok) {
-            return data;
+            return data.message;
         } else {
             console.log("Lambda function call failed!", data.error);
+            return data.error;
         };
     } catch (error) {
         console.log("error:", error);
