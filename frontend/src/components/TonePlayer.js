@@ -10,6 +10,7 @@ const TonePlayer = () => {
     const { rawWords } = GlobalVars();
     const [isPlaying, setIsPlaying] = useState(false);
     const [musicPlayer, setMusicPlayer] = useState(null);
+    const [currEvent, setCurrEvent] = useState({});
 
 
 
@@ -28,9 +29,7 @@ const TonePlayer = () => {
         let currentTime = Tone.now();
         let totalTime = 0;
         musicEvents.forEach((event) => {
-            if (event.notes.length > 0) {
-                player.triggerAttackRelease(event.notes, event.duration, currentTime);
-            }
+            player.triggerAttackRelease(event.notes, event.duration, currentTime);
             currentTime += event.duration;
             totalTime += event.duration;
         });
@@ -56,11 +55,12 @@ const TonePlayer = () => {
     }
 
 
-
     return (
+        // TODO: render each note that was played
         <div className="tone-player">
             <h2>Tone Player</h2>
             {renderTonePlayer()}
+
 
         </div>
     );
