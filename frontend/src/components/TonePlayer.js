@@ -8,26 +8,36 @@ import * as Tone from "tone";
 const TonePlayer = () => {
     const { musicEvents, setMusicEvents } = GlobalVars();
     const { rawWords } = GlobalVars();
+    const [isPlaying, setIsPlaying] = useState(false);
+    const [musicPlayer, setMusicPlayer] = useState(null);
 
 
 
     const playMusicEvents = async () => {
-        if (!musicEvents || musicEvents.length === 0) return;
-
+        if (!musicEvents || musicEvents.length === 0 || isPlaying) return;
         await Tone.start();
-
-        const synth = new Tone.PolySynth().toDestination();
+        let player = null;
+        if (!musicPlayer) {
+            const synth = new Tone.PolySynth().toDestination();
+            setMusicPlayer(synth);
+            player = synth;
+        } else {
+            player = musicPlayer;
+        }
+        setIsPlaying(true);
         let currentTime = Tone.now();
-
+        let totalTime = 0;
         musicEvents.forEach((event) => {
-            console.log(event);
             if (event.notes.length > 0) {
-                synth.triggerAttackRelease(event.notes, event.duration, currentTime);
+                player.triggerAttackRelease(event.notes, event.duration, currentTime);
             }
             currentTime += event.duration;
+            totalTime += event.duration;
         });
-
-
+        setTimeout(() => {
+            player.releaseAll();
+            setIsPlaying(false);
+        }, totalTime * 1000);
     };
 
 
@@ -36,9 +46,10 @@ const TonePlayer = () => {
 
 
     const renderTonePlayer = () => {
+        // TODO: implement pause
         return (
             <div>
-                <button onClick={playMusicEvents}>Play</button>
+                <button onClick={playMusicEvents} disabled={isPlaying}>[Play]</button>
             </div>
 
         )
@@ -47,7 +58,7 @@ const TonePlayer = () => {
 
 
     return (
-        <div cclassName="tone-player">
+        <div className="tone-player">
             <h2>Tone Player</h2>
             {renderTonePlayer()}
 
