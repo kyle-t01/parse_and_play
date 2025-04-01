@@ -4,7 +4,7 @@ const Instructions = () => {
     return (
         <div className="instructions">
 
-            <p># refer to original github page for more details on WHAT and HOW</p>
+            <p>You may view the project source code and README.md <a href="https://github.com/kyle-t01/parse_and_play">here</a>.</p>
 
             <h2> Input Formatting </h2>
             <table>
