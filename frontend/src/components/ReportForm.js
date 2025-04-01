@@ -1,6 +1,6 @@
 // component where user queries are sent 
 import { useState } from "react";
-// [Send user stats to lambda function] import { sendUsageReport } from "../services/reporting";
+import { sendUserReport } from "../services/reportService";
 
 import { GlobalVars } from "../context/GlobalContext";
 
@@ -22,13 +22,13 @@ const ReportForm = () => {
         e.preventDefault();
         setIsLoading(true);
         setUserReport(userReport);
-        // const response = await sendUsageReport();
-        /*
+        const response = await sendUserReport(invalidWords, userReport);
+
         if (response) {
-            console.log("Lambda Function response: ", response)
             setUsageReportResponse(response)
+
         }
-        */
+
 
         setIsLoading(false);
     }
