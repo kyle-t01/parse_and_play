@@ -48,7 +48,7 @@ const InputBox = () => {
                 {userInput.length} / {maxChars}
             </div>
             <button className="button" onClick={handleSubmitUserInput} disabled={isLoading}>
-                {isLoading ? "Loading..." : "Send"}
+                {isLoading ? "Loading..." : "Load Text"}
             </button>
         </div>
     );
