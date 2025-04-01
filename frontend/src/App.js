@@ -4,6 +4,7 @@ import DataPreview from './components/DataPreview';
 import InputSelector from './components/InputSelector';
 import Instructions from './components/Instructions';
 import TonePlayer from './components/TonePlayer';
+import ReportForm from './components/ReportForm';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <InputSelector />
       <DataPreview />
       <TonePlayer />
+      <ReportForm />
     </div>
   );
 }
