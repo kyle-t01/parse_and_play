@@ -48,7 +48,7 @@ const TonePlayer = () => {
 
     return (
         <div cclassName="tone-player">
-            <h1>Tone Player</h1>
+            <h2>Tone Player</h2>
             {renderTonePlayer()}
 
         </div>

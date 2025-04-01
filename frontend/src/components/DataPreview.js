@@ -134,7 +134,7 @@ const DataPreview = () => {
 
     return (
         <div className="data-preview">
-            <h1>Data Preview</h1>
+            <h2>Data Preview</h2>
             {renderDataPreview()}
 
         </div>

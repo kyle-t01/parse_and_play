@@ -3,10 +3,10 @@ const Instructions = () => {
 
     return (
         <div className="instructions">
-            <h1>Parse and Play! Write down music notes as text and listen to it!</h1>
+
             <p># refer to original github page for more details on WHAT and HOW</p>
 
-            <h1> Input Formatting </h1>
+            <h2> Input Formatting </h2>
             <table>
                 <tr>
                     <th>Feature</th>
@@ -39,13 +39,13 @@ const Instructions = () => {
                 </tr>
             </table>
 
-            <h1> Features to be implemented </h1>
+            <h2> Features to be implemented </h2>
             <ul>
                 <li>Chords: maj, min, dim, aug (for example: Cmaj)</li>
                 <li>7th Chords: maj7, min7, dim7, dom7 (for example: Cmin7)</li>
                 <li>Complex chord example: C4maj-B4:1/2</li>
             </ul>
-            <h1> Music Examples: Try it out in the text box!</h1>
+            <h2> Music Examples: Try it out in the text box!</h2>
             <table>
                 <tr>
                     <th>Name</th>
