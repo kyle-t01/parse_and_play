@@ -136,6 +136,7 @@ const DataPreview = () => {
         <div className="data-preview">
             <h2>Data Preview</h2>
             {renderDataPreview()}
+            {musicEvents.length == 0 && <p>Load some text to start data preview.</p>}
 
         </div>
     );
