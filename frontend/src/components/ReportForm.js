@@ -11,7 +11,7 @@ const ReportForm = () => {
     // global state
     const [userReport, setUserReport] = useState("");
     const { invalidWords } = GlobalVars();
-    const { setUsageReportResponse } = GlobalVars();
+    const { usageReportResponse, setUsageReportResponse } = GlobalVars();
     // const { rawNotes, setRawNotes } = GlobalVars();
 
     // local state
@@ -25,16 +25,17 @@ const ReportForm = () => {
         const response = await sendUserReport(invalidWords, userReport);
 
         if (response) {
-            setUsageReportResponse(response)
-
+            setUsageReportResponse(response);
+            alert(response);
         }
 
-
+        setUsageReportResponse("");
         setIsLoading(false);
     }
     return (
         <div className="report-box">
             <h2>Bug Report Form</h2>
+            <p>Write feedback here. Any invalid input will also be automatically sent when you press send report!</p>
             <textarea
                 className="input"
                 type="text"
@@ -44,13 +45,15 @@ const ReportForm = () => {
                 rows={4}
                 maxLength={maxChars}
             />
+
             <div className="char-counter">
                 {userReport.length} / {maxChars}
             </div>
-            <p>Any invalid input will also be automatically sent when you press report!</p>
-            <button className="button" onClick={handleSubmitUserReport} disabled={isLoading}>
+
+            <button className="button" onClick={handleSubmitUserReport} disabled={isLoading || userReport.trim() === ""}>
                 {isLoading ? "Loading..." : "Send Report"}
             </button>
+
 
         </div>
     );
