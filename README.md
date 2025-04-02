@@ -1,6 +1,8 @@
 # Parse and Play: Play music from text!
 **Parse and Play** is an app built with AWS cloud that converts musical notation into audio playback. 
 
+**Try it yourself here!**: [Parse and Play: Play music from text!](http://parse-and-play.s3-website-ap-southeast-2.amazonaws.com)
+
 ## Core Features
 - user can input notes and durations like D-F#-A:1/4 (see "Input Formatting")
 - user can upload files containing notes
