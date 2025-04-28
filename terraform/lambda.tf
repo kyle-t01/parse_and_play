@@ -6,6 +6,12 @@ resource "aws_lambda_function" "lf" {
   role             = aws_iam_role.lf_iam.arn
   filename         = data.archive_file.lf_zip.output_path
   source_code_hash = data.archive_file.lf_zip.output_base64sha256
+
+    environment {
+        variable = {
+            DB_NAME = aws_dynamodb_table.db.name
+        }
+    }
 }
 
 # url and config
