@@ -18,6 +18,7 @@ jobs:
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       AWS_REGION: ap-southeast-2
       URL: http://parse-and-play-2.s3-website-ap-southeast-2.amazonaws.com
+      BUCKET_NAME: s3://placeholder
 
     steps:
     - name: Checkout code...
@@ -38,5 +39,5 @@ jobs:
         CI: false
 
     - name: Uploading build files to s3...
-      run: aws s3 sync ./build/ s3://parse-and-play-2 --delete
+      run: aws s3 sync ./build/ $BUCKET_NAME --delete
       working-directory: frontend
