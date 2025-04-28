@@ -3,6 +3,9 @@
 
 **Try it yourself here!**: [Parse and Play: Play music from text!](http://parse-and-play.s3-website-ap-southeast-2.amazonaws.com)
 
+## Purpose
+- 
+
 ## Core Features
 - user can input notes and durations like D-F#-A:1/4 (see "Input Formatting")
 - user can upload files containing notes
