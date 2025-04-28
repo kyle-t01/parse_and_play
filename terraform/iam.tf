@@ -1,6 +1,6 @@
 # IAM roles and policy attachments
 resource "aws_iam_role" "lf_iam" {
-  name = "dataset-splitter-backend-role-wj5wzz8l"
+  name = "parse-and-play-lf-role"
   path = "/service-role/"
   assume_role_policy = jsonencode({
     Version = "2012-10-17",
@@ -16,10 +16,26 @@ resource "aws_iam_role" "lf_iam" {
   })
 }
 
-# attach LFwriteToDB policy to lf_iam (existing policy for now)
-resource "aws_iam_role_policy_attachment" "lf_iam_attach" {
-  role       = aws_iam_role.lf_iam.name
-  policy_arn = "arn:aws:iam::410293311095:policy/LFwriteToDB"
+# make new IAM policy that allows writing to db
+resource "aws_iam_policy" "lf_policy" {
+  name        = "parse-and-play-lf-write-policy"
+  description = "Allow LF to write into dynamoDB table"
+  policy = jsonencode({
+    Version = "2012-10-17",
+    Statement = [
+      {
+        Effect = "Allow",
+        Action = [
+          "dynamodb:PutItem"
+        ],
+        Resource = aws_dynamodb_table.db.arn
+      }
+    ]
+  })
 }
 
-# TODO: LFwriteToDB writes to BugReports (old table) only, so make a new policy
+# attach lf_policy to role
+resource "aws_iam_role_policy_attachment" "lf_iam_attach" {
+  role       = aws_iam_role.lf_iam.name
+  policy_arn = aws_iam_policy.lf_policy.arn
+}
