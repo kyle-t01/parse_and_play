@@ -3,6 +3,10 @@ resource "aws_s3_bucket" "app" {
     bucket = "parse-and-play-2"
     force_destroy = true
 
+    depends_on = [
+    aws_s3_bucket_public_access_block.app
+    ]
+
     website {
         index_document = "index.html"
     }
