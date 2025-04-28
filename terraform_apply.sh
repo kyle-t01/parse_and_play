@@ -24,7 +24,7 @@ echo "REACT_APP_LF_REPORT=$(terraform output -raw lambda_function_url)" > ../fro
 URL=$(terraform output -raw s3_website_url)
 
 # bucket name
-BUCKET=${terraform output -raw s3_bucket_name}
+BUCKET=$(terraform output -raw s3_bucket_name)
 
 # now go to root directory
 cd ..
@@ -39,7 +39,7 @@ sed -i "s|(http[^)]*)|\($URL\)|g" ./README.md
 sed -i "s|URL: .*|URL: $URL|g" .github/workflows/cicd.yml
 
 # update the aws s3 bucket name
-sed -i "s|BUCKET_NAME: .*|BUCKET_NAME: s3://$BUCKET|g" .github/workflows/cicd.yml
+sed -i "s|BUCKET_NAME: s3://.*|BUCKET_NAME: s3://$BUCKET|g" .github/workflows/cicd.yml
 
 echo "###END###"
 
