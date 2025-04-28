@@ -10,3 +10,5 @@ crash.log
 .terraform/
 
 lf_zip.zip
+
+.terraform.*
