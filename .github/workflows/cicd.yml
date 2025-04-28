@@ -38,4 +38,5 @@ jobs:
         CI: false
 
     - name: Uploading build files to s3...
-      run: aws s3 sync frontend/build/ s3://parse-and-play-2 --delete
+      run: aws s3 sync ./build/ s3://parse-and-play-2 --delete
+      working-directory: frontend
