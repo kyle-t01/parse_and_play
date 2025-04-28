@@ -1,6 +1,6 @@
-# we are using an already existing db for now
+# create new database
 resource "aws_dynamodb_table" "db" {
-  name         = "BugReports"
+  name         = "ParseAndPlayBugReports"
   billing_mode = "PAY_PER_REQUEST"
   hash_key     = "id"
   table_class  = "STANDARD"
