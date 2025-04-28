@@ -13,5 +13,5 @@ output "dynamodb_table_name" {
 # url of frontend
 output "s3_website_url" {
   description = "URL of the S3 static website hosting"
-  value       = "http://${aws_s3_bucket.app.website_endpoint}"
+  value       = aws_s3_bucket_website_configuration.app.website_endpoint
 }
