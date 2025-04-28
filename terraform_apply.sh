@@ -2,18 +2,20 @@ echo "## Running .sh, infra as code setup ##"
 
 cd terraform
 
+# echo "Terraform init..."
 # init Terraform
-terraform init
+# terraform init
 
-echo "Finished init"
 
+
+echo "Deploying/Updating Infrastructure as Code..."
 # apply changes
-terraform apply
+terraform apply -auto-approve
 
-echo "Deploying infrastructure as code..."
+
 
 # refresh
-terraform refresh
+# terraform refresh
 
 # update .env variables
 echo "REACT_APP_LF_REPORT=$(terraform output -raw lambda_function_url)" > ../frontend/.env
@@ -21,18 +23,16 @@ echo "REACT_APP_LF_REPORT=$(terraform output -raw lambda_function_url)" > ../fro
 # get URL
 URL=$(terraform output -raw s3_website_url)
 
-# check web url
-echo "$URL"
+# now go to root directory
+cd ..
 
-# automaticaly updated README.md
-sed -i "s|<placeholder-url>|$URL|g" ./README.md
+echo "Updating/Replacing README.md and cicd.yml App URL"
 
-echo "UPDATED URL IN README..."
+# automaticaly updating README.md
+sed -i "s|(http[^)]*)|\($URL\)|g" ./README.md
 
 # now update the cicd environment variables
-sed -i "s|<placeholder-url>|$URL|g" .github/workflows/cicd.yml
-
-echo "UPDATED URL IN CICD.yml
+sed -i "s|URL: .*|URL: $URL|g" .github/workflows/cicd.yml
 
 
 echo "###END###"
