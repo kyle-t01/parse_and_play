@@ -19,7 +19,7 @@ resource "aws_lambda_function_url" "lf_url" {
   function_name      = aws_lambda_function.lf.function_name
   authorization_type = "NONE"
   cors {
-    allow_origins = ["http://${aws_s3_bucket.app.website_endpoint}"]
+    allow_origins = ["http://${aws_s3_bucket_website_configuration.app_website.website_endpoint}"]
     allow_methods     = ["GET", "POST"]
     allow_headers     = ["content-type"]
     allow_credentials = false
