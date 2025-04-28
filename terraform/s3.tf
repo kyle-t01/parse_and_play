@@ -2,11 +2,16 @@
 resource "aws_s3_bucket" "app" {
   bucket        = "parse-and-play-2"
   force_destroy = true
+}
 
-  website {
-    index_document = "index.html"
+# configure it as a website
+resource "aws_s3_bucket_website_configuration" "app_website" {
+  bucket = aws_s3_bucket.app.id
+  index_document {
+    suffix = "index.html"
   }
 }
+
 
 # allow public access
 resource "aws_s3_bucket_public_access_block" "app" {
