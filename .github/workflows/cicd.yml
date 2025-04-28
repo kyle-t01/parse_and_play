@@ -17,7 +17,7 @@ jobs:
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       AWS_REGION: ap-southeast-2
-      URL: <placeholder-url>
+      URL: http://parse-and-play-2.s3-website-ap-southeast-2.amazonaws.com
 
     steps:
     - name: Checkout code

@@ -1,7 +1,7 @@
 # Parse and Play: Play music from text!
 **Parse and Play** is an app built with AWS cloud that converts musical notation into audio playback. 
 
-**Try it yourself here!**: [Parse and Play: Play music from text!](<placeholder-url>)
+**Try it yourself here!**: [Parse and Play: Play music from text!](http://parse-and-play-2.s3-website-ap-southeast-2.amazonaws.com)
 
 ## Purpose
 - 
@@ -71,7 +71,7 @@
 #### Lambda Functions: CORS config
 Under Configure Function URL:
 - tick Configure cross-origin resource sharing(CORS)
-- allow origin: (http://...)
+- allow origin: http://parse-and-play-2.s3-website-ap-southeast-2.amazonaws.com
 - Allow headers: content-type
 - Allow methods (ie GET, POST)
 
