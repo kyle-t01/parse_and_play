@@ -29,10 +29,13 @@ jobs:
     - name: Running npm install...
       run: npm install
       working-directory: frontend
+      
 
     - name: Bulding frontend...
       run: npm run build
       working-directory: frontend
+      env:
+        CI: false
 
     - name: Uploading build files to s3...
       run: aws s3 sync frontend/build/ s3://parse-and-play-2 --delete
