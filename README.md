@@ -1,14 +1,14 @@
 # Parse and Play: Play music from text!
-**Parse and Play** is an app built with AWS cloud that converts musical notation into audio playback. 
+**Parse and Play** is an app built with AWS cloud (S3, Lambda Functions, DynamoDB) that converts musical notation into audio playback. The cloud infrastructure is provisioned and maintained using Terraform (Infrastructure as Code), and deployed automatically via a GitHub Actions CI/CD pipeline.
 
 **Try it yourself here!**: [Parse and Play: Play music from text!](http://parse-and-play-2.s3-website-ap-southeast-2.amazonaws.com)
 
 ## Purpose
-- learn about AWS cloud deployment (S3, Lambda, DynamoBD)
+- learn about AWS cloud deployment (S3, Lambda, DynamoDB)
 - explore Infrastructure as Code (IaC) with Terraform
 - set up a CI/CD pipeline using GitHub Actions (automate deployment)
 - practice Bash scripting for automating repetitive tasks
-- make it easy to covert text to music (it is supposed to be a fun project after all)
+- make it easy to convert text to music (it is supposed to be a fun project after all)
 
 ## Core Features
 - user can input notes and durations like D-F#-A:1/4 (see "Input Formatting")
@@ -20,7 +20,7 @@
 ## Technologies Used
 - **React.js** => frontend
 - **AWS S3** => hosts the static frontend
-- **AWS Lambda** => recieves user reports and writes them to DynamoDB
+- **AWS Lambda** => receives user reports and writes them to DynamoDB
 - **AWS DynamoDB** => database that stores user reports (reports auto-delete after 7 days)
 - **Terraform** => provision/manage Infrastructure as Code (IaC), without needing manual setup on aws
 - **GitHub Actions** => CI/CD pipeline (builds app and deploys to aws cloud)
