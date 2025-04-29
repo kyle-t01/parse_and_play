@@ -4,21 +4,45 @@
 **Try it yourself here!**: [Parse and Play: Play music from text!](http://parse-and-play-2.s3-website-ap-southeast-2.amazonaws.com)
 
 ## Purpose
-- 
+- learn about AWS cloud deployment (S3, Lambda, DynamoBD)
+- explore Infrastructure as Code (IaC) with Terraform
+- set up a CI/CD pipeline using GitHub Actions (automate deployment)
+- practice Bash scripting for automating repetitive tasks
+- make it easy to covert text to music (it is supposed to be a fun project after all)
 
 ## Core Features
 - user can input notes and durations like D-F#-A:1/4 (see "Input Formatting")
 - user can upload files containing notes
 - data preview shows whether each note was parsed or invalid (with the help of regex)
 - user can play music using a web audio synth (Tone.js)
-- users can submit feedback and, bug reports saved via Lambda Function + DynamoDB
+- users can submit feedback and, bug reports saved via **Lambda Function** + **DynamoDB**
 
 ## Technologies Used
 - **React.js** => frontend
 - **AWS S3** => hosts the static frontend
 - **AWS Lambda** => recieves user reports and writes them to DynamoDB
 - **AWS DynamoDB** => database that stores user reports (reports auto-delete after 7 days)
+- **Terraform** => provision/manage Infrastructure as Code (IaC), without needing manual setup on aws
+- **GitHub Actions** => CI/CD pipeline (builds app and deploys to aws cloud)
 - **tone.js package** => web audio synth player
+- **Bash Scripting** => automate Terraform execution, and inject environment variables
+
+## What does my workflow look like?
+1. run ./terraform_apply.sh (**bashscript**)
+    - runs **Terraform** to apply Infrastructure as Code (IaC)
+    - injects important variables in environment files
+      - updates app URL in the `README.md`
+      - updates app URL in the `cicd.yml` file
+      - set database name in **Lambda Function** environment
+      - sets backend API endpoint for frontend app
+2. commit and push code changes to GitHub (triggers **GitHub Actions**)
+3. **GitHub Actions** (as defined in `.github/workflows/cicd.yml`) will:
+    - provision a fresh Ubuntu VM
+    - installs frontend dependencies
+    - build the frontend app
+    - upload and deploy the built app to our **S3** bucket
+    - website is now (automatically) live at the **S3** website URL: [Parse and Play: Play music from text!](http://parse-and-play-2.s3-website-ap-southeast-2.amazonaws.com)
+
 
 ## How to use:
 ### Input Formatting
@@ -66,21 +90,3 @@
 - durations: :1/4, :0.25 etc => durationRegex = "(?:[:]([0-9]+\/[1-9]+|(?:[0-9]*[.])?[0-9]+))?"
 - all together => `^${chainedNoteRegex}${durationRegex}`$
 
-### For Future Reference:
-### Setting up the Lambda Function
-#### Lambda Functions: CORS config
-Under Configure Function URL:
-- tick Configure cross-origin resource sharing(CORS)
-- allow origin: http://parse-and-play-2.s3-website-ap-southeast-2.amazonaws.com
-- Allow headers: content-type
-- Allow methods (ie GET, POST)
-
-#### Lambda Functions: uploading a package
-- mkdir tempDir
-- touch index.mjs (insert your lambda function contents here)
-- cd tempDir
-- npm init -y
-- npm install [your packages] (in my case it was openai)
-- 7zip the files WITHIN tempDir, do NOT include tempDir (don't use powershell Compress-Archive)
-- upload the .zip file (it replaces your original index.mjs)
-- remember to add any .env variables you need
